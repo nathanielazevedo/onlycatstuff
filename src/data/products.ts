@@ -2,6 +2,16 @@ export type Retailer = "amazon" | "chewy" | "brand"
 
 export type Category = "toys" | "scratchers" | "catnip" | "beds" | "feeding"
 
+/** Play styles used by the toy quiz to match cats to products */
+export type Trait =
+  | "hunter"
+  | "batter"
+  | "catnip"
+  | "scratcher"
+  | "lounger"
+  | "solo"
+  | "interactive"
+
 export interface Partner {
   id: string
   name: string
@@ -14,6 +24,8 @@ export interface Product {
   partnerId: Partner["id"]
   description: string
   category: Category
+  /** Which kinds of cats this suits. Drives toy quiz recommendations. */
+  traits: Trait[]
   /** Affiliate link supplied by the partner (Amazon, Chewy, etc.) */
   url: string
   retailer: Retailer
@@ -51,6 +63,7 @@ export const products: Product[] = [
     partnerId: "smartykat",
     description: "Classic little catnip mice that get batted under every couch in the house.",
     category: "catnip",
+    traits: ["catnip", "batter", "solo"],
     url: "#",
     retailer: "amazon",
     badge: "Staff pick",
@@ -61,6 +74,7 @@ export const products: Product[] = [
     partnerId: "smartykat",
     description: "A wand that spins and hides under a cover, so your cat can hunt without you.",
     category: "toys",
+    traits: ["hunter", "solo"],
     url: "#",
     retailer: "amazon",
     badge: "Seen on YouTube",
@@ -71,6 +85,7 @@ export const products: Product[] = [
     partnerId: "smartykat",
     description: "Soft, crinkly mice stuffed with catnip for short bursts of zoomies.",
     category: "catnip",
+    traits: ["catnip", "batter"],
     url: "#",
     retailer: "amazon",
   },
@@ -80,6 +95,7 @@ export const products: Product[] = [
     partnerId: "smartykat",
     description: "Cardboard scratcher that doubles as a nap spot. Comes with catnip.",
     category: "scratchers",
+    traits: ["scratcher", "lounger", "catnip"],
     url: "#",
     retailer: "amazon",
   },
@@ -89,6 +105,7 @@ export const products: Product[] = [
     partnerId: "smartykat",
     description: "A fluttery feather wand for interactive play sessions before bedtime.",
     category: "toys",
+    traits: ["hunter", "interactive"],
     url: "#",
     retailer: "amazon",
   },
@@ -98,6 +115,7 @@ export const products: Product[] = [
     partnerId: "smartykat",
     description: "Lightweight crinkle balls that make a satisfying sound when pounced on.",
     category: "toys",
+    traits: ["batter", "solo"],
     url: "#",
     retailer: "amazon",
   },
